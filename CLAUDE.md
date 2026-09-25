@@ -18,6 +18,6 @@
 5. **確かめてからコミット**:
    `npx markdownlint-cli '**/*.md'` と `claude plugin validate .`
    (skill の版を変えたら `plugin.json` の `version` も上げる)
-6. **SKILL.md の front matter の `description` に「`: `」(コロンと空白) を入れない**。
+6. **SKILL.md の front matter の `description` にコロンのすぐ後に空白が続く並びを入れない**。
    YAML では別のキーの始まりと読まれ、GitHub の表示が誤りになる。
    Claude Code と `claude plugin validate` は寛容に読むので見つけられない。区切りは「 — 」を使う
