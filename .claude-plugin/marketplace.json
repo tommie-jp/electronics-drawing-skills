@@ -1,0 +1,14 @@
+{
+  "name": "schematic-skill",
+  "description": "Skills for drawing electronics diagrams that people can read",
+  "owner": {
+    "name": "tommie-jp"
+  },
+  "plugins": [
+    {
+      "name": "readable-schematic",
+      "source": "./plugins/readable-schematic",
+      "description": "Lay out circuit schematics for human readers: sourced conventions and a check-by-image workflow"
+    }
+  ]
+}
