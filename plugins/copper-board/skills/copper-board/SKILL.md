@@ -1,6 +1,6 @@
 ---
 name: copper-board
-description: 銅張り基板の寸法図 (マイクロストリップ線路・コプレーナ線路・Manhattan の島・端面 SMA の治具など) を、人が見て切り出し・組み立てられるように書く・直すときに使う。寸法線の置き方 (交差させない・長い寸法を外・同じ寸法を 2 度書かない) と、線路の図に書くべき値 (幅・基板の厚さ・比誘電率・周りの銅との間隔) の流儀を出典つきでまとめ、描いた図を画像にして目で確かめる手順と点検表を添えてある。描く道具は問わない。Use when drawing or cleaning up copper-clad board dimension drawings — microstrip, coplanar lines, Manhattan islands, edge SMA fixtures — for people to cut and build from, in any tool: sourced dimensioning and RF-line conventions plus a render-and-inspect checklist.
+description: 銅張り基板の寸法図 (マイクロストリップ線路・コプレーナ線路・Manhattan の島・端面 SMA の治具など) を、人が見て切り出し・組み立てられるように書く・直すときに使う。寸法線の置き方 (交差させない・長い寸法を外・同じ寸法を 2 度書かない) と、線路の図に書くべき値 (幅・基板の厚さ・比誘電率・周りの銅との間隔) の流儀を出典つきでまとめ、描いた図を画像にして目で確かめる手順と点検表を添えてある。描く道具は問わない。Use when drawing or cleaning up copper-clad board dimension drawings — microstrip, coplanar lines, Manhattan islands, edge SMA fixtures — for people to cut and build from, in any tool — sourced dimensioning and RF-line conventions plus a render-and-inspect checklist.
 ---
 
 # 人が見て切り出せる銅張り基板の寸法図を書く
