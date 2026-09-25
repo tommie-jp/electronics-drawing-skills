@@ -1,4 +1,4 @@
-# プロジェクト指示 (schematic-skill)
+# プロジェクト指示 (electronics-drawing-skills)
 
 人が読む電子工作の図を描くための skill 集。公開リポジトリ。
 

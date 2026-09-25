@@ -1,4 +1,4 @@
-# schematic-skill
+# electronics-drawing-skills
 
 [English](README.md)
 
@@ -18,8 +18,8 @@ Claude Code ではプラグインとして入れられる。
 ### Claude Code (プラグイン)
 
 ```text
-/plugin marketplace add tommie-jp/schematic-skill
-/plugin install readable-schematic@schematic-skill
+/plugin marketplace add tommie-jp/electronics-drawing-skills
+/plugin install readable-schematic@electronics-drawing-skills
 ```
 
 ### ほかのエージェント・手で置く

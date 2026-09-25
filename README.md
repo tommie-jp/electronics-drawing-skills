@@ -1,4 +1,4 @@
-# schematic-skill
+# electronics-drawing-skills
 
 [日本語](README.ja.md)
 
@@ -20,8 +20,8 @@ front matter lets agents pick it up in English conversations too).
 ### Claude Code (plugin)
 
 ```text
-/plugin marketplace add tommie-jp/schematic-skill
-/plugin install readable-schematic@schematic-skill
+/plugin marketplace add tommie-jp/electronics-drawing-skills
+/plugin install readable-schematic@electronics-drawing-skills
 ```
 
 ### Other agents, or by hand
