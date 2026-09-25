@@ -9,6 +9,11 @@
       "name": "readable-schematic",
       "source": "./plugins/readable-schematic",
       "description": "Lay out circuit schematics for human readers: sourced conventions and a check-by-image workflow"
+    },
+    {
+      "name": "breadboard-wiring",
+      "source": "./plugins/breadboard-wiring",
+      "description": "Draw breadboard wiring diagrams people can follow: sourced wire-color and layout conventions and a check-by-image workflow"
     }
   ]
 }

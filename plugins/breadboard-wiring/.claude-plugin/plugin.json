@@ -1,0 +1,10 @@
+{
+  "name": "breadboard-wiring",
+  "description": "Draw breadboard wiring diagrams people can follow: sourced wire-color and layout conventions and a check-by-image workflow",
+  "version": "0.1.0",
+  "author": {
+    "name": "tommie-jp"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/tommie-jp/electronics-drawing-skills"
+}
