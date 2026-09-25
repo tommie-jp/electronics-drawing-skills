@@ -10,7 +10,7 @@ Claude Code ではプラグインとして入れられる。
 | --- | --- | --- |
 | [readable-schematic](plugins/readable-schematic/skills/readable-schematic/SKILL.md) | 回路図を読みやすく配置する。流儀を出典つきでまとめ、画像にして確かめる点検表を添える。描く道具は問わない | 公開 |
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | ブレッドボードの実体配線図を、見て組めるように描く。線の色・レール・置き方の流儀を出典つきで | 公開 |
-| perfboard-wiring | ユニバーサル基板の配線図 | 予定 |
+| [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | ユニバーサル基板の配線図を、見て半田付けできるように描く。段取り・線の引き方・部品面と半田面の流儀を出典つきで | 公開 |
 | copper-board | 銅張り基板 (マイクロストリップなど) の寸法図 | 予定 |
 
 ## 入れ方

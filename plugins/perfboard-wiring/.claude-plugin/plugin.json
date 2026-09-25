@@ -1,0 +1,10 @@
+{
+  "name": "perfboard-wiring",
+  "description": "Draw perfboard (universal board) wiring diagrams people can solder from: sourced layout and wiring conventions, component and solder sides, and a check-by-image workflow",
+  "version": "0.1.0",
+  "author": {
+    "name": "tommie-jp"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/tommie-jp/electronics-drawing-skills"
+}

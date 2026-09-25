@@ -9,7 +9,7 @@ electronics diagrams that people can read. In Claude Code they install as plugin
 | --- | --- | --- |
 | [readable-schematic](plugins/readable-schematic/skills/readable-schematic/SKILL.md) | Lays out circuit schematics for human readers: sourced conventions and a check-by-image checklist. Works with any drawing tool | Published |
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | Draws breadboard wiring diagrams people can build from: sourced wire-color, rail and placement conventions | Published |
-| perfboard-wiring | Perfboard wiring diagrams | Planned |
+| [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | Draws perfboard wiring diagrams people can solder from: sourced planning, wiring, and component-side vs solder-side conventions | Published |
 | copper-board | Dimension drawings of copper-clad boards (microstrip and the like) | Planned |
 
 The skill text is written in Japanese (the English description in each `SKILL.md`
