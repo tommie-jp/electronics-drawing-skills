@@ -1,0 +1,10 @@
+{
+  "name": "copper-board",
+  "description": "Draw copper-clad board dimension drawings (microstrip, coplanar lines, Manhattan islands) people can cut and build from: sourced dimensioning and RF-line conventions and a check-by-image workflow",
+  "version": "0.1.0",
+  "author": {
+    "name": "tommie-jp"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/tommie-jp/electronics-drawing-skills"
+}

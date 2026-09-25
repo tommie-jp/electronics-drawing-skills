@@ -19,6 +19,11 @@
       "name": "perfboard-wiring",
       "source": "./plugins/perfboard-wiring",
       "description": "Draw perfboard (universal board) wiring diagrams people can solder from: sourced layout and wiring conventions, component and solder sides, and a check-by-image workflow"
+    },
+    {
+      "name": "copper-board",
+      "source": "./plugins/copper-board",
+      "description": "Draw copper-clad board dimension drawings (microstrip, coplanar lines, Manhattan islands) people can cut and build from: sourced dimensioning and RF-line conventions and a check-by-image workflow"
     }
   ]
 }
