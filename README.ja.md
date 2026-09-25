@@ -38,17 +38,65 @@
 
 ## 入れ方
 
-### Claude Code (プラグイン)
+どこで Claude Code を使っているかで、入れ方が違う。出典は Claude Code の公式文書
+[Install plugins](https://code.claude.com/docs/en/plugins/install)。
 
-マーケットプレイスを 1 度登録し、使う skill を選んで入れる。
+### ターミナルの Claude Code (JetBrains の IDE の中のターミナルも同じ)
+
+`claude` で Claude Code を起動し、**Claude Code の入力欄**に打つ (シェルに打つのではない)。
 
 ```text
 /plugin marketplace add tommie-jp/electronics-drawing-skills
 /plugin install readable-schematic@electronics-drawing-skills
-/plugin install breadboard-wiring@electronics-drawing-skills
-/plugin install perfboard-wiring@electronics-drawing-skills
-/plugin install copper-board@electronics-drawing-skills
 ```
+
+- 1 行目 (マーケットプレイスの登録) は最初の 1 回だけ
+- 2 行目は、すぐには入らず、プラグインの説明の画面が開く。そこで**入れる範囲 (スコープ)** を選ぶ
+  (下の表)。ほかの 3 つも名前を替えて同じように入れる
+- 入れたあと「`Run /reload-plugins to activate.`」と出たら、読み込み直しが要る (画面は自動でやる)
+
+### シェルのコマンドで入れる
+
+Claude Code を起動せず、シェルで入れることもできる。スクリプトに書くときや、
+`claude -p` のように対話しない使い方をしているときはこちら (その中では `/plugin` が使えない)。
+
+```bash
+claude plugin marketplace add tommie-jp/electronics-drawing-skills
+claude plugin install readable-schematic@electronics-drawing-skills
+claude plugin install breadboard-wiring@electronics-drawing-skills
+claude plugin install perfboard-wiring@electronics-drawing-skills
+claude plugin install copper-board@electronics-drawing-skills
+```
+
+範囲は `--scope user` (既定)・`--scope project`・`--scope local` で選ぶ。入ったかは `claude plugin list` で見る。
+
+### デスクトップアプリ
+
+**Code** タブのローカル (か SSH) のセッションで、入力欄の横の **+** → **Plugins** → **Add plugin**。
+マーケットプレイスを先に登録しておく (上のどちらかの 1 行目)。
+
+### VS Code
+
+Claude Code のパネルの入力欄に `/plugins` と打つと **Manage plugins** が開く。
+**Marketplaces** タブで `tommie-jp/electronics-drawing-skills` を足し、**Plugins** タブで入れる。
+
+### クラウドのセッション (claude.ai/code など)
+
+プラグインは使えない。手元で入れたプラグインも読み込まれない。
+代わりに、下の「手で置く」でリポジトリの `.claude/skills/` に写してコミットしておくと、
+そのリポジトリのセッションで使える。手元の `~/.claude/skills/` は読み込まれない
+([Configure cloud environments](https://code.claude.com/docs/en/cloud-environments) の「What carries over from your setup」)。
+
+### 入れる範囲 (スコープ)
+
+| 範囲 | 効く所 | 記録される所 |
+| --- | --- | --- |
+| user (自分) | この PC のすべてのプロジェクト | `~/.claude/settings.json` |
+| project (このリポジトリの全員) | このリポジトリを使う人みんな | `.claude/settings.json` (コミットする) |
+| local (自分、このリポジトリだけ) | このリポジトリの自分だけ | `.claude/settings.local.json` |
+
+ターミナル・デスクトップアプリ (ローカル)・VS Code は同じ設定を読むので、1 か所で user に
+入れれば、ほかの 2 つでも使える。
 
 ### ほかのエージェント・手で置く
 

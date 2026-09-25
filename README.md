@@ -40,17 +40,65 @@ English part, so agents pick them up in English conversations too.
 
 ## Install
 
-### Claude Code (plugin)
+How you install depends on where you use Claude Code. Source: the Claude Code docs,
+[Install plugins](https://code.claude.com/docs/en/plugins/install).
 
-Register the marketplace once, then install the skills you want.
+### Claude Code in a terminal (also the terminal inside JetBrains IDEs)
+
+Start Claude Code with `claude` and type these **in Claude Code's prompt**, not in your shell.
 
 ```text
 /plugin marketplace add tommie-jp/electronics-drawing-skills
 /plugin install readable-schematic@electronics-drawing-skills
-/plugin install breadboard-wiring@electronics-drawing-skills
-/plugin install perfboard-wiring@electronics-drawing-skills
-/plugin install copper-board@electronics-drawing-skills
 ```
+
+- The first line (registering the marketplace) is needed only once
+- The second line does not install right away: it opens the plugin's details, where you choose the
+  **install scope** (table below). Install the other three the same way with their names
+- If it prints `Run /reload-plugins to activate.`, a reload is needed (the panel runs it for you)
+
+### From your shell
+
+You can also install without starting Claude Code — for scripts, or when you use Claude Code
+non-interactively such as `claude -p` (where `/plugin` is not available).
+
+```bash
+claude plugin marketplace add tommie-jp/electronics-drawing-skills
+claude plugin install readable-schematic@electronics-drawing-skills
+claude plugin install breadboard-wiring@electronics-drawing-skills
+claude plugin install perfboard-wiring@electronics-drawing-skills
+claude plugin install copper-board@electronics-drawing-skills
+```
+
+Pick the scope with `--scope user` (default), `--scope project` or `--scope local`. Check with `claude plugin list`.
+
+### Desktop app
+
+In a local (or SSH) session in the **Code** tab: **+** next to the prompt box → **Plugins** → **Add plugin**.
+Register the marketplace first (the first line of either section above).
+
+### VS Code
+
+Type `/plugins` in the Claude Code panel's prompt box to open **Manage plugins**.
+Add `tommie-jp/electronics-drawing-skills` on the **Marketplaces** tab, then install on the **Plugins** tab.
+
+### Cloud sessions (claude.ai/code and the like)
+
+Plugins are not available there, and plugins installed on your machine are not loaded.
+Instead, copy the skills into the repository's `.claude/skills/` (see "by hand" below) and commit them;
+sessions on that repository can then use them. Your local `~/.claude/skills/` is not loaded
+([Configure cloud environments](https://code.claude.com/docs/en/cloud-environments), "What carries over from your setup").
+
+### Install scope
+
+| Scope | Applies to | Recorded in |
+| --- | --- | --- |
+| user | All your projects on this machine | `~/.claude/settings.json` |
+| project | Everyone working in this repository | `.claude/settings.json` (committed) |
+| local | Only you, only in this repository | `.claude/settings.local.json` |
+
+The terminal, the desktop app (local sessions) and VS Code read the same settings, so installing at
+user scope in one makes it available in the other two.
 
 ### Other agents, or by hand
 
