@@ -48,8 +48,10 @@ description: 銅張り基板の寸法図 (マイクロストリップ線路・�
 
 | # | 決め | なぜ | 出典 |
 | --- | --- | --- | --- |
-| 14 | 切り出す前に、紙の上で島と線の配置を決める | 手戻りが減る | [Hackaday] |
-| 15 | どの銅が島で、どの銅が地 (GND の面) かを図で分かるようにする。電源を配る帯を残すなら、それも示す | 島以外の銅を地の面として使うのがこの組み方 | [Cly] |
+| 14 | 切り出す前に、回路図から鉛筆と紙で島と線の配置を決める。回路図のまとまり (発振・フィルタ・増幅段など) ごとに板の区画を割り当てる | 手戻りが減る。誰もやっていない回路ほど、先に配置を詰めておく | [Hackaday] [K7QO] |
+| 15 | どの銅が島で、どの銅が地 (GND の面) かを図で分かるようにする。電源を配る帯を残すなら、それも示す | 島以外の銅を地の面として使うのがこの組み方。島は地の面から電気的に離して置く | [Cly] [K7QO] |
+| 15a | **島の数は、回路図の節点 (部品どうしがつながる点) の数で決まる**。GND の節点は島にせず、地の面へ直に落とす | 回路図から島の数と置き場所を数えられ、図と回路図を照らし合わせやすい | [K7QO] |
+| 15b | 回路図がよく描かれていれば、島も回路図と同じ**左から右の順**に並べる | 回路図と板を同じ向きで追える (readable-schematic の「信号は左から右」がそのまま生きる) | [K7QO] |
 | 16 | 部品の足は短く、島どうしは短い足や線で渡す | 高い周波数 (VHF) で足を短くできるのがこの組み方の利点 | [Cly] |
 | 17 | 島を切り出したら、隣の島や地と短絡していないかを導通で確かめる | 削り残しの銅が短絡を作る | [Hackaday] |
 
@@ -99,7 +101,8 @@ Markdown の ` ```copper ` フェンスでは、次を描き比べて確かめ�
 - [なひたふ] [マイクロストリップラインの作り方 — なひたふ JTAG 日記](https://nahitafu.cocolog-nifty.com/nahitafu/2008/11/post-57a1.html)
 - [Hackaday] [Ironclad Tips For Copper-Clad Prototyping — Hackaday](https://hackaday.com/2020/05/24/ironclad-tips-for-copper-clad-prototyping/)。Leo Fernekes の動画の紹介記事で、使ったのは記事の本文に書かれた点だけ
 - [Cly] [Spot Island-style Copper Clad board prototyping — Cly Institute for Radio Research](https://clyinstitute.blogspot.com/2020/05/spot-island-style-copper-clad-board.html)
+- [K7QO] [Manhattan Building Techniques — Chuck Adams, K7QO (PDF)](https://www.qrpme.com/docs/K7QO%20Manhattan.pdf)
 
-本文を読めなかったもの: Paul Harden の Manhattan の手引き・K7QO の記事・Analog Devices (Hittite) の
+本文を読めなかったもの: Paul Harden の Manhattan の手引き・Analog Devices (Hittite) の
 応用資料 (この環境から相手のサーバーへつながらなかった)、Cinch の端面 SMA の応用資料 (取得すると
 スクリプトのページが返った)、McGill 大学・マルツ・San Diego Makers Guild (403 か許可外)。

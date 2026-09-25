@@ -20,7 +20,7 @@ dimensions), **with sources whose text was actually read**.
 | [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | Perfboard wiring diagrams | Plan on paper first, wire with component leads, cross with insulated wire or jumpers, component side vs solder side (mirrored) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | Copper-clad board dimension drawings (microstrip, Manhattan islands) | No crossing dimensions, longer dimensions outside; on line drawings, state width, thickness, permittivity and gap to nearby copper |
 
-All are at version 0.1.0.
+copper-board is at version 0.1.1; the others are at 0.1.0.
 
 ## How each skill is laid out
 

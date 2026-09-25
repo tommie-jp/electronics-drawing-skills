@@ -19,7 +19,7 @@
 | [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | ユニバーサル基板の配線図 | 先に紙で段取り、部品の足で配線、交差は被覆線かジャンパ、部品面と半田面 (左右が逆) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | 銅張り基板の寸法図 (マイクロストリップ・Manhattan の島など) | 寸法線を交差させない・長い寸法を外、線路の図に幅・厚さ・比誘電率・周りの銅との間隔を書く |
 
-どれも版は 0.1.0。
+版は copper-board が 0.1.1、ほかは 0.1.0。
 
 ## skill の中身の形
 
