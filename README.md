@@ -105,6 +105,84 @@ user scope in one makes it available in the other two.
 Copy `plugins/<name>/skills/<name>/` into your agent's skills folder
 (for Claude Code, `~/.claude/skills/` or a project's `.claude/skills/`).
 
+## Making sure the agent uses the skills
+
+Installing a skill does not mean it is read every time. Claude Code reads a skill's content
+**only when it judges, from the `description`, that the skill fits the task at hand**
+([Skills], "Control who invokes a skill"). "Draw a schematic" usually selects it; a request where
+**the figure is only part of the job** (write a textbook problem, fix an article) or **work handed to
+a subagent** may not. The author has seen a subagent, asked to write textbook problems, skip the
+skill and draw five schematics with wires running through instrument boxes (the connectivity was
+right, so the checks did not catch it).
+
+Layer the following, from lightest to most reliable.
+
+1. **Call it by name.** Type `/readable-schematic:readable-schematic`, or write "read the
+   readable-schematic skill before drawing" in the request. A plugin skill's name is
+   `plugin-name:skill-name`
+2. **Put it in the project instructions.** Add an item like this to `CLAUDE.md` (or `AGENTS.md`
+   for other agents), which Claude Code reads every session:
+
+   ```markdown
+   - Before drawing or changing a figure meant for people (schematic, breadboard, board drawing),
+     read the electronics-drawing-skills skill for it (readable-schematic / breadboard-wiring /
+     perfboard-wiring / copper-board), render the figure to an image and go through the checklist
+     item by item. Check an existing figure against the checklist before using it as a model
+   ```
+
+3. **When handing work to a subagent, name the skills in the request.** Skills read in the parent
+   conversation are not passed on. Write "read these skills before drawing" and "report the
+   checklist result for each figure" in the request. If you define the subagent in a file
+   (`.claude/agents/*.md`), list the skills under `skills:` and their full content is loaded at
+   startup ([Subagents], "Preload skills into subagents"):
+
+   ```yaml
+   ---
+   name: figure-writer
+   description: Draws electronics figures meant for people
+   skills:
+     - readable-schematic:readable-schematic
+     - breadboard-wiring:breadboard-wiring
+   ---
+   ```
+
+4. **Ask for the checklist result in the report, and do not accept a figure without it.** Treat a
+   figure whose report has no per-item result as not checked. Check any existing figure you offer
+   as a model first (a broken model spreads)
+5. **Remind with a hook.** Claude Code hooks can add context for Claude before or after a tool runs
+   ([Hooks], "PreToolUse" and "Decision control").
+   [examples/hooks/drawing-skill-reminder.sh](examples/hooks/drawing-skill-reminder.sh) adds
+   "read the skill, render to an image and go through the checklist" when the content being written
+   contains a drawing fence (` ```circuit ` and so on) or a drawing file (`.kicad_sch` and so on).
+   Copy it to the project's `.claude/hooks/` and add this to `.claude/settings.json` (needs jq):
+
+   ```json
+   {
+     "hooks": {
+       "PreToolUse": [
+         {
+           "matcher": "Write|Edit",
+           "hooks": [
+             {
+               "type": "command",
+               "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/drawing-skill-reminder.sh",
+               "args": []
+             }
+           ]
+         }
+       ]
+     }
+   }
+   ```
+
+6. **Look at the image in the end.** Hooks and instructions only get the skill read; they do not
+   judge the figure. Netlists and ERC only see connectivity. Before merging, a person or a reviewer
+   opens the image and goes through the checklist
+
+[Skills]: https://code.claude.com/docs/en/skills
+[Subagents]: https://code.claude.com/docs/en/sub-agents
+[Hooks]: https://code.claude.com/docs/en/hooks
+
 ## Layout
 
 ```text
@@ -112,6 +190,7 @@ Copy `plugins/<name>/skills/<name>/` into your agent's skills folder
 plugins/<name>/.claude-plugin/plugin.json Plugin name and version
 plugins/<name>/skills/<name>/SKILL.md     The skill itself
 scripts/check.mjs                        Shape checks (see "Checking")
+examples/hooks/                          Example hook that reminds the agent of the skills (see above)
 ```
 
 ## Ground rules

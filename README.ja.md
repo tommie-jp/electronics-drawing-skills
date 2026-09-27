@@ -103,6 +103,79 @@ Claude Code のパネルの入力欄に `/plugins` と打つと **Manage plugins
 `plugins/<名前>/skills/<名前>/` のフォルダを、使うエージェントの skill の置き場
 (Claude Code なら `~/.claude/skills/` かプロジェクトの `.claude/skills/`) へ写す。
 
+## 確実に使わせる
+
+入れただけでは、skill が毎回読まれるとは限らない。Claude Code は skill の `description` を見て、
+**今の仕事に合うと判断したときだけ**中身を読む ([Skills] の「Control who invokes a skill」)。
+「回路図を描いて」と頼めば選ばれやすいが、**図が仕事の一部でしかない頼み方** (教科書の題を
+書いて、記事を直して) や、**サブエージェントに任せたとき**は読まれないことがある。
+作者の手元でも、題を書く仕事を任せたサブエージェントが skill を読まず、線が計器の箱を
+突っ切る回路図を 5 枚描いたことがある (つながりは正しかったので、検査では見つからなかった)。
+
+次の順に、読ませる仕組みを重ねる。上ほど手軽で、下ほど確実。
+
+1. **名前で呼ぶ**。`/readable-schematic:readable-schematic` と打つか、頼むときに
+   「描く前に skill の readable-schematic を読んで」と書く。プラグインの skill の名前は
+   `プラグイン名:skill 名`
+2. **プロジェクトの指示に書く**。Claude Code が毎回読む `CLAUDE.md` (ほかのエージェントなら
+   `AGENTS.md` など) に、例えば次の 1 項を置く
+
+   ```markdown
+   - 人が読む図 (回路図・実体配線図・基板の図) を描く・直すときは、先に electronics-drawing-skills の
+     skill (readable-schematic / breadboard-wiring / perfboard-wiring / copper-board) を読み、
+     図を画像にして点検表を 1 項目ずつ通す。既存の図を手本にするときも、先に点検表に通す
+   ```
+
+3. **サブエージェントに任せるときは、依頼文に skill の名前を書く**。親の会話で読んだ skill は
+   サブエージェントに渡らない。依頼文に「描く前に次の skill を読む」「図ごとに点検表の結果を報告する」を
+   書く。サブエージェントを定義ファイル (`.claude/agents/*.md`) で作っているなら、`skills:` に並べると
+   起動時に中身がまるごと読み込まれる ([Subagents] の「Preload skills into subagents」)
+
+   ```yaml
+   ---
+   name: figure-writer
+   description: 人が読む電子工作の図を描く
+   skills:
+     - readable-schematic:readable-schematic
+     - breadboard-wiring:breadboard-wiring
+   ---
+   ```
+
+4. **報告に点検の結果を書かせ、無ければ受け取らない**。点検表の項目ごとの合否が報告に無い図は、
+   skill を通していないものとして扱う。手本にさせる既存の図は、先に点検表に通しておく
+   (崩れた図を手本にすると、崩れが広がる)
+5. **フックで思い出させる**。Claude Code のフックは、ツールを使う前後に Claude へ文脈を足せる
+   ([Hooks] の「PreToolUse」と「Decision control」)。[examples/hooks/drawing-skill-reminder.sh](examples/hooks/drawing-skill-reminder.sh)
+   は、書き込もうとしている中身に図のフェンス (` ```circuit ` など) か図のファイル
+   (`.kicad_sch` など) があるとき、「skill を読み、画像にして点検表を通す」と伝える。
+   プロジェクトの `.claude/hooks/` に写し、`.claude/settings.json` に次を足す (jq が要る)
+
+   ```json
+   {
+     "hooks": {
+       "PreToolUse": [
+         {
+           "matcher": "Write|Edit",
+           "hooks": [
+             {
+               "type": "command",
+               "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/drawing-skill-reminder.sh",
+               "args": []
+             }
+           ]
+         }
+       ]
+     }
+   }
+   ```
+
+6. **最後は画像を見る**。フックも指示も「読ませる」までで、図の良し悪しは判定しない。
+   ネットリストや ERC はつながりしか見ない。取り込む前に、人か見直し役が画像を開いて点検表を通す
+
+[Skills]: https://code.claude.com/docs/en/skills
+[Subagents]: https://code.claude.com/docs/en/sub-agents
+[Hooks]: https://code.claude.com/docs/en/hooks
+
 ## 置き場
 
 ```text
@@ -110,6 +183,7 @@ Claude Code のパネルの入力欄に `/plugins` と打つと **Manage plugins
 plugins/<名前>/.claude-plugin/plugin.json プラグインの名前・版
 plugins/<名前>/skills/<名前>/SKILL.md     skill の本体
 scripts/check.mjs                        形の確認 (下の「確かめ方」)
+examples/hooks/                          skill を思い出させるフックの例 (上の「確実に使わせる」)
 ```
 
 ## 作り方の約束
