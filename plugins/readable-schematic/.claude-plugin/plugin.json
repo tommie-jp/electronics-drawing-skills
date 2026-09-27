@@ -1,7 +1,7 @@
 {
   "name": "readable-schematic",
   "description": "Lay out circuit schematics for human readers: sourced conventions and a check-by-image workflow",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "tommie-jp"
   },

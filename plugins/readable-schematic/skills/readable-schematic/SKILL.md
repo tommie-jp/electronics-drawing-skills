@@ -1,11 +1,12 @@
 ---
 name: readable-schematic
-description: 人が読む回路図 (教科書・解説・記事・README の図) を、読みやすい配置で書く・直すときに使う。信号は左から右・電位の高いほうを上・4 方向の交点を作らない・計器は測る所の隣、といった回路図の一般的な流儀を出典つきでまとめ、描いた図を画像にして目で確かめる手順と点検表を添えてある。描く道具は問わない (circuitikz・Schemdraw・KiCad・Markdown のフェンスなど)。Use when drawing or cleaning up circuit schematics meant for human readers, in any tool — layout conventions (signal flow, power at top, ground at bottom, T-junctions, label placement, meter placement) with sources, plus a render-and-inspect checklist.
+description: 人が読む回路図 (教科書・解説・記事・README の図) を、読みやすい配置で書く・直すときに使う。信号は左から右・電位の高いほうを上・4 方向の交点を作らない・計器は測る所の隣・部品の値は買える E24、といった回路図の一般的な流儀を出典つきでまとめ、描いた図を画像にして目で確かめる手順と点検表を添えてある。描く道具は問わない (circuitikz・Schemdraw・KiCad・Markdown のフェンスなど)。Use when drawing or cleaning up circuit schematics meant for human readers, in any tool — layout conventions (signal flow, power at top, ground at bottom, T-junctions, label placement, meter placement) and purchasable part values (E24) with sources, plus a render-and-inspect checklist.
 ---
 
 # 人が読みやすい回路図を書く
 
 つながりは正しいのに読みにくい回路図を避けるための、配置の決めごと。
+あわせて、読者が組める図にするための部品の値の決めごと (§1 #13) も置く。
 ネットリストや ERC は「つながり」しか見ないので、この skill の点検は**図を画像にして目で見て**行う。
 
 - §1 は回路図の一般的な流儀 (出典は末尾)。どの道具で描いても通用する
@@ -36,6 +37,7 @@ description: 人が読む回路図 (教科書・解説・記事・README の図)
 | 10 | 部品には ID と値を必ず添える。字は横書きで正立させ、縦や逆さにしない。ID と値は部品のすぐ横に置く | ID と値で部品が特定できる。回した字は読みにくい。隣の部品の近くに流れた字は、どの部品のものか分からなくなる | ID と値: [SparkFun] [Schemalyzer]。横書き・正立: [Schemalyzer]。すぐ横: 未確認 |
 | 11 | 詰めすぎず、空けすぎない | 詰めると字が重なり、空けると部品が小さく線ばかりになる | 詰めすぎない: [Flux]。空けすぎない: 実測 (§3) |
 | 12 | 電流計は測る線に直列、電圧計は測る部品のすぐ横に並列に置く | 直列・並列は計器の測り方そのもの。「すぐ横」は、何を測る計器かを位置だけで分からせるための、この skill の決め | 直列・並列: [LibreTexts]。すぐ横: 実測 (§3) |
+| 13 | **読者が組む図なら、部品の値は買える値にする**。抵抗は E24。コンデンサとインダクタは E24 のうち E12 に入る値を優先する (電解は E6)。系列に無い値は **E24 の 2 本の直列か並列**で作ってよい (例: 400 Ω = 200 Ω + 200 Ω)。そのときは部品表に 2 本と書き、実体配線図には実物の 2 本を描く。どちらでも作れない値は最寄りの値に丸め、期待値を丸めた値で計算し直す。可変抵抗は市販の値 (B5K など) でよい。等価回路・寄生分・手巻きのコイルは対象外で、等価回路だと分かるように書く | 系列に無い値は読者が買えず、組めない。E24 に入っていても、リード部品の C・L は E24 だけの値 (20 nF・130 nH など) が店に並ばないことが多い。丸めたまま期待値を直さないと、測った値と本文が合わない | E 系列 (IEC 60063) と、業界が抵抗・コンデンサ・インダクタの値を E 系列に揃えたこと、電解の多くが E6 か E12 で作られること: [Wikipedia]。抵抗を E24・C と L を E12 に寄せる線引き、2 本で作る、丸めて計算し直す: この skill の決め |
 
 ## 2. 手順
 
@@ -55,6 +57,7 @@ description: 人が読む回路図 (教科書・解説・記事・README の図)
 - [ ] 計器は測る部品のすぐ横か。遠回りの大きな輪になっていないか
 - [ ] 部品に比べて線が長すぎないか (図の大半が空白になっていないか)
 - [ ] 同じ文書の中で、同じ種類の回路が同じ向き・同じ並びで描かれているか
+- [ ] 部品の値は買える値か (抵抗は E24、C・L は E12。2 本で作るなら部品表にそう書いてあるか)。等価回路の値なら、そうと書いてあるか
 
 **「重なりなし」と報告する前に、字の 1 つ 1 つが読めるかを見る** (見落としやすい)。
 画像にした環境にフォントが無いと、字が別の字に化けることがある (TeX のフォントの Ω が `¬` になるなど)。
@@ -87,6 +90,7 @@ Markdown の ` ```circuit ` フェンス (番地で部品を置く) では、次
 - [Schemalyzer] [Schematic Design Best Practices: 30 Rules for Clear, Professional Circuits — Schemalyzer](https://www.schemalyzer.com/en/blog/schematic-review/best-practices/schematic-design-best-practices)
 - [Flux] [PCB Schematic Design Best Practices for Clean Circuit Diagrams — Flux](https://www.flux.ai/p/blog/pcb-schematic-best-practices)
 - [SparkFun] [How to Read a Schematic — SparkFun Learn](https://learn.sparkfun.com/tutorials/how-to-read-a-schematic/all)
+- [Wikipedia] [E series of preferred numbers — Wikipedia](https://en.wikipedia.org/wiki/E_series_of_preferred_numbers)
 - [LibreTexts] [20.4: Voltmeters and Ammeters — Physics LibreTexts](https://phys.libretexts.org/Bookshelves/University_Physics/Physics_(Boundless)/20:_Circuits_and_Direct_Currents/20.4:_Voltmeters_and_Ammeters)
 
 §1 の「未確認」(曲がり角を直角にする、ID と値を部品のすぐ横に置く) は、

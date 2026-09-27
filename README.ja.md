@@ -14,14 +14,14 @@
 
 | skill | 描く図 | 流儀の中身 |
 | --- | --- | --- |
-| [readable-schematic](plugins/readable-schematic/skills/readable-schematic/SKILL.md) | 回路図 | 信号は左から右、電位の高いほうを上、4 方向の交点を作らない、計器は測る所の隣 |
+| [readable-schematic](plugins/readable-schematic/skills/readable-schematic/SKILL.md) | 回路図 | 信号は左から右、電位の高いほうを上、4 方向の交点を作らない、計器は測る所の隣、部品の値は買える E24 |
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | ブレッドボードの実体配線図 | 赤は + だけ・黒は GND だけ、電源レールの使い方、部品と線の置き方 |
 | [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | ユニバーサル基板の配線図 | 先に紙で段取り、部品の足で配線、交差は被覆線かジャンパ、部品面と半田面 (左右が逆) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | 銅張り基板の寸法図 (マイクロストリップ・Manhattan の島など) | 寸法線を交差させない・長い寸法を外、線路の図に幅・厚さ・比誘電率・周りの銅との間隔を書く |
 | [instrument-screen](plugins/instrument-screen/skills/instrument-screen/SKILL.md) | 計器の画面 (オシロスコープ・スペクトラムアナライザ・VNA) | 見せたい物が画面の大半を占める尺度、本文の数字の所にマーカーとカーソル、隣の線を分ける RBW、特性の幅に合わせた掃引、見る物で選ぶ表示形式。読み値を数で合わせてから画像を見る |
 | [readable-graph](plugins/readable-graph/skills/readable-graph/SKILL.md) | x-y のグラフ (周波数応答・ボード線図・特性曲線) | 軸に量と単位、周波数は対数でそう明記、大きさの縦軸は 0 から、実測は記号で理論は線、比べる線は同じ図に、本文の数字は印で図に出す |
 
-版は readable-schematic・instrument-screen が 0.1.0、readable-graph が 0.1.2、ほかの 3 つは 0.1.1。
+版は readable-schematic が 0.2.0、instrument-screen が 0.1.0、readable-graph が 0.1.2、ほかの 3 つは 0.1.1。
 
 ## skill の中身の形
 
