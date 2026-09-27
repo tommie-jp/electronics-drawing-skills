@@ -1,0 +1,10 @@
+{
+  "name": "readable-graph",
+  "description": "Draw x-y graphs (frequency responses, Bode plots, resonance and characteristic curves) people can read: sourced conventions for axis labels and units, log and zero-based axes, legends, measured points vs fitted lines, and a numbers-first check-by-image workflow",
+  "version": "0.1.0",
+  "author": {
+    "name": "tommie-jp"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/tommie-jp/electronics-drawing-skills"
+}

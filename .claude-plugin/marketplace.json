@@ -24,6 +24,16 @@
       "name": "copper-board",
       "source": "./plugins/copper-board",
       "description": "Draw copper-clad board dimension drawings (microstrip, coplanar lines, Manhattan islands) people can cut and build from: sourced dimensioning and RF-line conventions and a check-by-image workflow"
+    },
+    {
+      "name": "instrument-screen",
+      "source": "./plugins/instrument-screen",
+      "description": "Write oscilloscope, spectrum analyser and VNA screen figures people can read: sourced conventions for scale, time base, RBW, sweep span, trace format, markers and cursors, and a numbers-first check-by-image workflow"
+    },
+    {
+      "name": "readable-graph",
+      "source": "./plugins/readable-graph",
+      "description": "Draw x-y graphs (frequency responses, Bode plots, resonance and characteristic curves) people can read: sourced conventions for axis labels and units, log and zero-based axes, legends, measured points vs fitted lines, and a numbers-first check-by-image workflow"
     }
   ]
 }

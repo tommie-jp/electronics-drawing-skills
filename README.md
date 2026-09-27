@@ -19,12 +19,14 @@ dimensions), **with sources whose text was actually read**.
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | Breadboard wiring diagrams | Red only for +, black only for ground; power rails; placing parts and wires |
 | [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | Perfboard wiring diagrams | Plan on paper first, wire with component leads, cross with insulated wire or jumpers, component side vs solder side (mirrored) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | Copper-clad board dimension drawings (microstrip, Manhattan islands) | No crossing dimensions, longer dimensions outside; on line drawings, state width, thickness, permittivity and gap to nearby copper |
+| [instrument-screen](plugins/instrument-screen/skills/instrument-screen/SKILL.md) | Instrument screens (oscilloscope, spectrum analyser, VNA) | A scale that lets the subject fill the screen, markers and cursors at the numbers in the text, an RBW that separates neighbouring lines, a sweep matched to the width of the feature, a trace format chosen by what is being read; match the readings to the text before looking at the image |
+| [readable-graph](plugins/readable-graph/skills/readable-graph/SKILL.md) | x-y graphs (frequency responses, Bode plots, characteristic curves) | Quantity and unit on every axis, log frequency axes stated as such, zero-based axes for magnitudes, measured data as symbols and theory as lines, compared curves on one graph, the numbers in the text marked on the graph |
 
-readable-schematic is at version 0.1.0; the other three are at 0.1.1.
+readable-schematic, instrument-screen and readable-graph are at version 0.1.0; the other three are at 0.1.1.
 
 ## How each skill is laid out
 
-All four share the same shape.
+All six share the same shape.
 
 - **§1 Conventions** — a table of rule, reason and source. The source column holds abbreviations of
   sources whose text was read. Rules found in none of them are marked "unconfirmed"; rules settled by
@@ -33,7 +35,7 @@ All four share the same shape.
   ERC only see connectivity; overlapping labels and sprawl only show up in the image
 - **§3 Tool notes** — figures measured by drawing and comparing in a specific tool. For now, the
   Markdown fences of [tommie-fence](https://github.com/tommie-jp/tommie-fence)
-  (` ```circuit ` ` ```bread ` ` ```perf ` ` ```copper `). §1 and §2 work with any tool
+  (` ```circuit ` ` ```bread ` ` ```perf ` ` ```copper ` ` ```scope ` ` ```spectrum ` ` ```vna `; ` ```graph ` is still being built). §1 and §2 work with any tool
 
 The skill text is written in Japanese. The `description` at the head of each `SKILL.md` also has an
 English part, so agents pick them up in English conversations too.
@@ -54,7 +56,7 @@ Start Claude Code with `claude` and type these **in Claude Code's prompt**, not 
 
 - The first line (registering the marketplace) is needed only once
 - The second line does not install right away: it opens the plugin's details, where you choose the
-  **install scope** (table below). Install the other three the same way with their names
+  **install scope** (table below). Install the other five the same way with their names
 - If it prints `Run /reload-plugins to activate.`, a reload is needed (the panel runs it for you)
 
 ### From your shell
@@ -124,9 +126,9 @@ Layer the following, from lightest to most reliable.
    for other agents), which Claude Code reads every session:
 
    ```markdown
-   - Before drawing or changing a figure meant for people (schematic, breadboard, board drawing),
-     read the electronics-drawing-skills skill for it (readable-schematic / breadboard-wiring /
-     perfboard-wiring / copper-board), render the figure to an image and go through the checklist
+   - Before drawing or changing a figure meant for people (schematic, breadboard, board drawing,
+     instrument screen, graph), read the electronics-drawing-skills skill for it (readable-schematic /
+     breadboard-wiring / perfboard-wiring / copper-board / instrument-screen / readable-graph), render the figure to an image and go through the checklist
      item by item. Check an existing figure against the checklist before using it as a model
    ```
 
@@ -186,7 +188,7 @@ Layer the following, from lightest to most reliable.
 ## Layout
 
 ```text
-.claude-plugin/marketplace.json          Marketplace catalog (lists the four plugins)
+.claude-plugin/marketplace.json          Marketplace catalog (lists the six plugins)
 plugins/<name>/.claude-plugin/plugin.json Plugin name and version
 plugins/<name>/skills/<name>/SKILL.md     The skill itself
 scripts/check.mjs                        Shape checks (see "Checking")

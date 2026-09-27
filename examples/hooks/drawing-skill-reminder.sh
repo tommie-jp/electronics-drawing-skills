@@ -10,7 +10,7 @@ hit=""
 case "$file" in
   *.kicad_sch|*.fzz|*.tex) hit=1 ;;
 esac
-if printf '%s' "$text" | grep -qE '^[[:space:]]*(```|~~~)[[:space:]]*(circuit|bread|breadboard|perf|perfboard|copper|circuitikz|tikz)\b'; then
+if printf '%s' "$text" | grep -qE '^[[:space:]]*(```|~~~)[[:space:]]*(circuit|bread|breadboard|perf|perfboard|copper|vna|scope|spectrum|graph|circuitikz|tikz)\b'; then
   hit=1
 fi
 [ -n "$hit" ] || exit 0
@@ -18,6 +18,6 @@ fi
 jq -n '{
   hookSpecificOutput: {
     hookEventName: "PreToolUse",
-    additionalContext: "This edit contains a figure meant for human readers. Before drawing or changing it, load the matching drawing-convention skill (readable-schematic for schematics, breadboard-wiring, perfboard-wiring, copper-board), follow its conventions, render the figure to an image, and go through the skill checklist item by item. Report the checklist result for each figure."
+    additionalContext: "This edit contains a figure meant for human readers. Before drawing or changing it, load the matching drawing-convention skill (readable-schematic for schematics, breadboard-wiring, perfboard-wiring, copper-board, instrument-screen for oscilloscope / spectrum analyser / VNA screens, readable-graph for x-y graphs), follow its conventions, render the figure to an image, and go through the skill checklist item by item. Report the checklist result for each figure."
   }
 }'

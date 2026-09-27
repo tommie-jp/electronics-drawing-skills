@@ -18,12 +18,14 @@
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | ブレッドボードの実体配線図 | 赤は + だけ・黒は GND だけ、電源レールの使い方、部品と線の置き方 |
 | [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | ユニバーサル基板の配線図 | 先に紙で段取り、部品の足で配線、交差は被覆線かジャンパ、部品面と半田面 (左右が逆) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | 銅張り基板の寸法図 (マイクロストリップ・Manhattan の島など) | 寸法線を交差させない・長い寸法を外、線路の図に幅・厚さ・比誘電率・周りの銅との間隔を書く |
+| [instrument-screen](plugins/instrument-screen/skills/instrument-screen/SKILL.md) | 計器の画面 (オシロスコープ・スペクトラムアナライザ・VNA) | 見せたい物が画面の大半を占める尺度、本文の数字の所にマーカーとカーソル、隣の線を分ける RBW、特性の幅に合わせた掃引、見る物で選ぶ表示形式。読み値を数で合わせてから画像を見る |
+| [readable-graph](plugins/readable-graph/skills/readable-graph/SKILL.md) | x-y のグラフ (周波数応答・ボード線図・特性曲線) | 軸に量と単位、周波数は対数でそう明記、大きさの縦軸は 0 から、実測は記号で理論は線、比べる線は同じ図に、本文の数字は印で図に出す |
 
-版は readable-schematic が 0.1.0、ほかの 3 つは 0.1.1。
+版は readable-schematic・instrument-screen・readable-graph が 0.1.0、ほかの 3 つは 0.1.1。
 
 ## skill の中身の形
 
-4 つとも同じ形にしてある。
+6 つとも同じ形にしてある。
 
 - **§1 流儀** — 決め・なぜ・出典の表。出典の列は、本文を読んで確かめた出典の略号。
   どの本文にも無かったものは「未確認」、描き比べて決めたものは「実測」と書き分ける
@@ -31,7 +33,7 @@
   ネットリストや ERC はつながりしか見ないので、字の重なりや間延びは画像でしか分からない
 - **§3 道具ごとの補足** — 特定の道具で描き比べて測った目安。いまは
   [tommie-fence](https://github.com/tommie-jp/tommie-fence) の Markdown のフェンス
-  (` ```circuit ` ` ```bread ` ` ```perf ` ` ```copper `) のもの。§1 と §2 は道具を問わない
+  (` ```circuit ` ` ```bread ` ` ```perf ` ` ```copper ` ` ```scope ` ` ```spectrum ` ` ```vna `。` ```graph ` は作っている途中) のもの。§1 と §2 は道具を問わない
 
 本文は日本語。各 `SKILL.md` の頭の `description` には英語も併記してあるので、
 英語で話しかけても選ばれる。
@@ -52,7 +54,7 @@
 
 - 1 行目 (マーケットプレイスの登録) は最初の 1 回だけ
 - 2 行目は、すぐには入らず、プラグインの説明の画面が開く。そこで**入れる範囲 (スコープ)** を選ぶ
-  (下の表)。ほかの 3 つも名前を替えて同じように入れる
+  (下の表)。ほかの 5 つも名前を替えて同じように入れる
 - 入れたあと「`Run /reload-plugins to activate.`」と出たら、読み込み直しが要る (画面は自動でやる)
 
 ### シェルのコマンドで入れる
@@ -121,9 +123,9 @@ Claude Code のパネルの入力欄に `/plugins` と打つと **Manage plugins
    `AGENTS.md` など) に、例えば次の 1 項を置く
 
    ```markdown
-   - 人が読む図 (回路図・実体配線図・基板の図) を描く・直すときは、先に electronics-drawing-skills の
-     skill (readable-schematic / breadboard-wiring / perfboard-wiring / copper-board) を読み、
-     図を画像にして点検表を 1 項目ずつ通す。既存の図を手本にするときも、先に点検表に通す
+   - 人が読む図 (回路図・実体配線図・基板の図・計器の画面・グラフ) を描く・直すときは、先に
+     electronics-drawing-skills の skill (readable-schematic / breadboard-wiring / perfboard-wiring /
+     copper-board / instrument-screen / readable-graph) を読み、図を画像にして点検表を 1 項目ずつ通す。既存の図を手本にするときも、先に点検表に通す
    ```
 
 3. **サブエージェントに任せるときは、依頼文に skill の名前を書く**。親の会話で読んだ skill は
@@ -179,7 +181,7 @@ Claude Code のパネルの入力欄に `/plugins` と打つと **Manage plugins
 ## 置き場
 
 ```text
-.claude-plugin/marketplace.json          マーケットプレイスの目録 (4 つのプラグインを載せる)
+.claude-plugin/marketplace.json          マーケットプレイスの目録 (6 つのプラグインを載せる)
 plugins/<名前>/.claude-plugin/plugin.json プラグインの名前・版
 plugins/<名前>/skills/<名前>/SKILL.md     skill の本体
 scripts/check.mjs                        形の確認 (下の「確かめ方」)
