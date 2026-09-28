@@ -22,7 +22,7 @@ dimensions), **with sources whose text was actually read**.
 | [instrument-screen](plugins/instrument-screen/skills/instrument-screen/SKILL.md) | Instrument screens (oscilloscope, spectrum analyser, VNA) | A scale that lets the subject fill the screen, markers and cursors at the numbers in the text, an RBW that separates neighbouring lines, a sweep matched to the width of the feature, a trace format chosen by what is being read; match the readings to the text before looking at the image |
 | [readable-graph](plugins/readable-graph/skills/readable-graph/SKILL.md) | x-y graphs (frequency responses, Bode plots, characteristic curves) | Quantity and unit on every axis, log frequency axes stated as such, zero-based axes for magnitudes, measured data as symbols and theory as lines, compared curves on one graph, the numbers in the text marked on the graph |
 
-readable-schematic, instrument-screen and readable-graph are at version 0.1.0; the other three are at 0.1.1.
+readable-schematic and instrument-screen are at version 0.1.0; the other four are at 0.1.1.
 
 ## How each skill is laid out
 
