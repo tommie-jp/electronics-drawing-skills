@@ -30,7 +30,7 @@ description: 人が読む回路図 (教科書・解説・記事・README の図)
 | 3 | **電位の高いほうを上、低いほうを下**。正の電源は上、負の電源は下 | 多くの技術者は正の電源が上にあると直感で読む。逆に描くと読み違える | [高知工大] [ト技] [Schemalyzer] [Flux] |
 | 4 | 単電源の回路なら GND の線は一番下。正負の電源なら GND は間 (0 V を中心に上が +、下が −) | #3 から決まる。なお [ト技] は「グラウンドは自由に置いてよい」とする | [高知工大] |
 | 5 | GND の記号は下向き、正の電源の記号は上向きにする | 上下の約束 (#3) と揃う | [Flux]。[SparkFun] は「正の電源は上向きの矢、GND は横棒 (か下向きの矢・三角)」と記号の慣習を書く |
-| 6 | 信号の線は短く、まっすぐに。縦と横だけで曲がり角は直角 | 短い直線の線は目で追える | 短く直線: [zepto]。直角: 未確認 |
+| 6 | 信号の線は短く、まっすぐに。縦と横だけで曲がり角は直角 | 短い直線の線は目で追える | 短く直線: [zepto]。縦と横・直角: [CircuitCellar] |
 | 7 | **4 方向の交点 (十字の結線) を作らない**。枝分かれはすべて T 字にし、つながる所には黒丸を打つ | 十字の交点は、つながっているかどうかが黒丸の有無だけで決まる。黒丸は小さく、全体を引いて見たり縮小して刷ったりすると見落とす。黒丸の打ち忘れもよくある誤り。T 字だけなら黒丸が無くても意味が変わらない | [zepto] [Schemalyzer] [Flux] |
 | 8 | 線の交差を減らす。避けられない交差には黒丸を打たない | 交差の少ない図が読みやすい図の条件の 1 つ。黒丸の無い交差は「つながっていない」と読まれる | [zepto] [Schemalyzer] [Flux] [SparkFun] |
 | 9 | 関係する部品をまとめて置く (電源、測定、負荷など) | 同じ仲間がまとまっていることが読みやすい図の条件の 1 つ。機能ごとに塊にして (枠や間隔で) 示すと、図の構成が読める | [zepto] [ト技] の図 1 [Schemalyzer] [Flux] |
@@ -38,6 +38,7 @@ description: 人が読む回路図 (教科書・解説・記事・README の図)
 | 11 | 詰めすぎず、空けすぎない | 詰めると字が重なり、空けると部品が小さく線ばかりになる | 詰めすぎない: [Flux]。空けすぎない: 実測 (§3) |
 | 12 | 電流計は測る線に直列、電圧計は測る部品のすぐ横に並列に置く | 直列・並列は計器の測り方そのもの。「すぐ横」は、何を測る計器かを位置だけで分からせるための、この skill の決め | 直列・並列: [LibreTexts]。すぐ横: 実測 (§3) |
 | 13 | **読者が組む図なら、部品の値は買える値にする**。抵抗は E24。コンデンサとインダクタは E24 のうち E12 に入る値を優先する (電解は E6)。系列に無い値は **E24 の 2 本の直列か並列**で作ってよい (例: 400 Ω = 200 Ω + 200 Ω)。そのときは部品表に 2 本と書き、実体配線図には実物の 2 本を描く。どちらでも作れない値は最寄りの値に丸め、期待値を丸めた値で計算し直す。可変抵抗は市販の値 (B5K など) でよい。等価回路・寄生分・手巻きのコイルは対象外で、等価回路だと分かるように書く | 系列に無い値は読者が買えず、組めない。E24 に入っていても、リード部品の C・L は E24 だけの値 (20 nF・130 nH など) が店に並ばないことが多い。丸めたまま期待値を直さないと、測った値と本文が合わない | E 系列 (IEC 60063) と、業界が抵抗・コンデンサ・インダクタの値を E 系列に揃えたこと、電解の多くが E6 か E12 で作られること: [Wikipedia]。抵抗を E24・C と L を E12 に寄せる線引き、2 本で作る、丸めて計算し直す: この skill の決め |
+| 14 | **電源と GND は記号 (電源の記号・GND の記号) で表し**、部品ごとの電源の足から 1 本の電源の線まで長い線を引かない。同じ名前の記号どうしはつながっているものとして読む | 電源と GND はほとんどの部品につながる。全部を線で引くと、線が絡まって信号の道が読めなくなる | [HamRadio] |
 
 ## 2. 手順
 
@@ -54,6 +55,7 @@ description: 人が読む回路図 (教科書・解説・記事・README の図)
 - [ ] 字 (ID・値・電流や電圧の記号・計器のラベル) がほかの字・線・記号に重なっていないか。**1 字ずつ読めるか**
 - [ ] 矢が黒丸や記号に重なっていないか
 - [ ] 4 方向から線が集まる点が無いか。交差に黒丸が付いていないか
+- [ ] 線は縦と横だけか。電源と GND は記号で表し、遠くの電源の線まで長く引き回していないか
 - [ ] 計器は測る部品のすぐ横か。遠回りの大きな輪になっていないか
 - [ ] 部品に比べて線が長すぎないか (図の大半が空白になっていないか)
 - [ ] 同じ文書の中で、同じ種類の回路が同じ向き・同じ並びで描かれているか
@@ -87,11 +89,15 @@ Markdown の ` ```circuit ` フェンス (番地で部品を置く) では、次
   公開されているのは 1 ページ目だけで、「7 つの作法」のうち読めたのは ① と ②
 - [高知工大] [回路図 Schematics — 高知工科大学 橘 昌良](https://www.ele.kochi-tech.ac.jp/tacibana/etc/analog-intro/schematics.html)
 - [zepto] [見やすい電子回路図の書き方とは？【５つのポイントを紹介します】 — ZeptoElectronicDesign](https://zeptoelecdesign.com/schematics/)
+- [CircuitCellar] [Drawing Schematics — Circuit Cellar (Andrew Levido, 2024)](https://circuitcellar.com/resources/quickbits/drawing-schematics/)。
+  「Align components and wires vertically and horizontally」「Wires should only ever cross at right angles」
+- [HamRadio] [Power Rails and Ground Symbols on Schematics — Ham Radio Base](https://www.hamradiobase.com/electronics/power-rails-and-ground-symbols/)。
+  「If every supply wire were drawn from a single point back to each IC, the schematic would be a tangled mess」、同じ記号どうしがつながる
 - [Schemalyzer] [Schematic Design Best Practices: 30 Rules for Clear, Professional Circuits — Schemalyzer](https://www.schemalyzer.com/en/blog/schematic-review/best-practices/schematic-design-best-practices)
 - [Flux] [PCB Schematic Design Best Practices for Clean Circuit Diagrams — Flux](https://www.flux.ai/p/blog/pcb-schematic-best-practices)
 - [SparkFun] [How to Read a Schematic — SparkFun Learn](https://learn.sparkfun.com/tutorials/how-to-read-a-schematic/all)
 - [Wikipedia] [E series of preferred numbers — Wikipedia](https://en.wikipedia.org/wiki/E_series_of_preferred_numbers)
 - [LibreTexts] [20.4: Voltmeters and Ammeters — Physics LibreTexts](https://phys.libretexts.org/Bookshelves/University_Physics/Physics_(Boundless)/20:_Circuits_and_Direct_Currents/20.4:_Voltmeters_and_Ammeters)
 
-§1 の「未確認」(曲がり角を直角にする、ID と値を部品のすぐ横に置く) は、
+§1 の「未確認」(ID と値を部品のすぐ横に置く) は、
 上のどの本文にも書かれていなかったもの。回路図の慣習として広く見かけるが、出典では確かめていない。
