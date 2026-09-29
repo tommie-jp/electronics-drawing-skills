@@ -1,7 +1,7 @@
 {
   "name": "perfboard-wiring",
-  "description": "Draw perfboard (universal board) wiring diagrams people can solder from: choosing the smallest stock board that fits (1.6 mm FR-4 by default), sourced layout and wiring conventions, component and solder sides, and a check-by-image workflow",
-  "version": "0.3.0",
+  "description": "Draw perfboard (universal board) wiring diagrams people can solder from: choosing the first board that fits in the author's stock order, 5x7 → 7x9 → 9x15 → 10x15 → 12x18 cm, overseas sizes before Japanese ones (1.6 mm FR-4 by default), sourced layout and wiring conventions, component and solder sides, and a check-by-image workflow",
+  "version": "0.4.0",
   "author": {
     "name": "tommie-jp"
   },
