@@ -17,12 +17,12 @@ dimensions), **with sources whose text was actually read**.
 | --- | --- | --- |
 | [readable-schematic](plugins/readable-schematic/skills/readable-schematic/SKILL.md) | Circuit schematics | Signals left to right, higher potential on top, no four-way junctions, meters next to what they measure, purchasable part values (E24) |
 | [breadboard-wiring](plugins/breadboard-wiring/skills/breadboard-wiring/SKILL.md) | Breadboard wiring diagrams | Red only for +, black only for ground; power rails; placing parts and wires |
-| [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | Perfboard wiring diagrams | Plan on paper first, wire with component leads, cross with insulated wire or jumpers, component side vs solder side (mirrored) |
+| [perfboard-wiring](plugins/perfboard-wiring/skills/perfboard-wiring/SKILL.md) | Perfboard wiring diagrams | Smallest stock board that fits (1.6 mm FR-4 by default), plan on paper first, wire with component leads, cross with insulated wire or jumpers, component side vs solder side (mirrored) |
 | [copper-board](plugins/copper-board/skills/copper-board/SKILL.md) | Copper-clad board dimension drawings (microstrip, Manhattan islands) | No crossing dimensions, longer dimensions outside; on line drawings, state width, thickness, permittivity and gap to nearby copper |
 | [instrument-screen](plugins/instrument-screen/skills/instrument-screen/SKILL.md) | Instrument screens (oscilloscope, spectrum analyser, VNA) | A scale that lets the subject fill the screen, markers and cursors at the numbers in the text, an RBW that separates neighbouring lines, a sweep matched to the width of the feature, a trace format chosen by what is being read; match the readings to the text before looking at the image |
 | [readable-graph](plugins/readable-graph/skills/readable-graph/SKILL.md) | x-y graphs (frequency responses, Bode plots, characteristic curves) | Quantity and unit on every axis, log frequency axes stated as such, zero-based axes for magnitudes, measured data as symbols and theory as lines, compared curves on one graph, the numbers in the text marked on the graph |
 
-readable-schematic is at version 0.3.0, breadboard-wiring and perfboard-wiring are at 0.2.0, readable-graph is at 0.1.2, copper-board is at 0.1.1, and instrument-screen is at 0.1.0.
+readable-schematic is at version 0.3.0, breadboard-wiring is at 0.2.0, perfboard-wiring is at 0.3.0, readable-graph is at 0.1.2, copper-board is at 0.1.1, and instrument-screen is at 0.1.0.
 
 ## How each skill is laid out
 
