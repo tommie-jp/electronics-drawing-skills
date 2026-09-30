@@ -1,7 +1,7 @@
 {
   "name": "instrument-screen",
-  "description": "Write oscilloscope, spectrum analyser and VNA screen figures people can read: sourced conventions for scale, time base, RBW, sweep span, trace format, markers and cursors, and a numbers-first check-by-image workflow",
-  "version": "0.2.0",
+  "description": "Write oscilloscope, spectrum analyser, VNA and logic analyser screen figures people can read: sourced conventions for scale, time base, RBW, sweep span, sample rate, bus radix, trace format, markers and cursors, and a numbers-first check-by-image workflow",
+  "version": "0.3.0",
   "author": {
     "name": "tommie-jp"
   },
