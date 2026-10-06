@@ -1,7 +1,7 @@
 {
   "name": "breadboard-wiring",
   "description": "Draw breadboard wiring diagrams people can follow: sourced wire-color and layout conventions and a check-by-image workflow",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": {
     "name": "tommie-jp"
   },
